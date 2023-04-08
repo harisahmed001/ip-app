@@ -1,0 +1,50 @@
+version: "2.2" 
+services:
+  ipapp:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: ipapp
+    ports:
+      - '5002:5002'
+    container_name: ipapp
+    hostname: ipapp
+    volumes:
+     - ./:/application/
+    environment:
+      MYSQL_HOST: "mysql"
+      MYSQL_PORT: 3306
+      MYSQL_DB: "ipapp"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "root"
+      FLASK_HOST: "0.0.0.0"
+      FLASK_PORT: 5002
+    depends_on:
+      mysql:
+        condition: service_healthy
+    #command: debug
+
+  mysql:
+    image: mysql:5.7-debian
+    restart: always
+    container_name: mysql
+    hostname: mysql
+    environment:
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_DATABASE=ipapp
+    ports:
+     - '3306:3306'
+    volumes:
+     - './mysql:/var/lib/mysql'
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # phpmyadmin:
+  #   container_name: phpmyadmin
+  #   ports:
+  #    - '8082:80'
+  #   image: phpmyadmin/phpmyadmin
+  #   environment:
+  #    - PMA_ARBITRARY=1

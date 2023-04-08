@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ip's App</title>
+</head>
+<body>
+    <h1>IP's List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>IP</td>
+                <td>Created</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in ip_list %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.ip_address }}</td>
+                    <td>{{ row.created_date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
