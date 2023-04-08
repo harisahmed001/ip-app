@@ -1,11 +1,12 @@
-# Image App
+# IP App
 
-This application uploads image to s3, stores the url to mongodb and cache it to redis.
+This application saves the ip on mysql and fetch from table on list page
 
 ## Run
 
 Docker
 ```bash
+docker-compose build
 docker-compose up
 ```
 
