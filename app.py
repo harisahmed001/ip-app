@@ -20,9 +20,13 @@ def list():
 
 @app.route('/')
 def none():
-    record=Ip(ip_address=request.remote_addr)
+    if request.headers.getlist("X-Forwarded-For"):
+        ip = request.headers.getlist("X-Forwarded-For")[0]
+    else:
+        ip = request.remote_addr
+    record=Ip(ip_address=ip)
     record.save()
-    return render_template('index.html', ip_address=request.remote_addr)
+    return render_template('index.html', ip_address=ip)
 
 @app.route('/add/<ip>')
 def add(ip):
