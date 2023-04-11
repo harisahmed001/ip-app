@@ -22,6 +22,12 @@ pip install -r requirements.txt
 ./entrypoint.sh debug
 ```
 
+### ECR Image Push
+When code is pushed to master or PR is merged to master, github workflow runs and push the image to ECR
+
+https://github.com/harisahmed001/ip-app/blob/master/.github/workflows/build_push.yml
+
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
