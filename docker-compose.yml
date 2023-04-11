@@ -22,6 +22,7 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+    ## This enables to exec inside the container for debugging
     #command: debug
 
   mysql:
@@ -41,6 +42,7 @@ services:
       timeout: 20s
       retries: 10
 
+  ## Just for testing
   # phpmyadmin:
   #   container_name: phpmyadmin
   #   ports:
